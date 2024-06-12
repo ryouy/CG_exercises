@@ -7,37 +7,40 @@
 #include <math.h>
 #include <stdio.h>
 
-const int N = 100000;
-float TriangleDots[N+2][2];
+const int N = 1000;
+float TriangleDots[N + 2][2];
 
 void LetsFractal(int N) {
     TriangleDots[0][0] = 0.0f; TriangleDots[0][1] = 0.0f;
     TriangleDots[1][0] = 1.0f; TriangleDots[1][1] = 0.0f;
     TriangleDots[2][0] = 0.5f; TriangleDots[2][1] = 1.0f;
 
-    for (int i = 3; i < N+2; i++) {
+    for (int i = 3; i < N + 2; i++) {
         int random = rand() % 3;
         for (int j = 0; j < 2; j++)
             TriangleDots[i][j] = (TriangleDots[i - 1][j] + TriangleDots[random][j]) / 2;
     }
 }
-void LetsDisplay(float color, int n,int N, int a, int b){
+
+void LetsDisplay(float color, int n, int N, int a, int b) {
     glPointSize(color);
     glColor3f(a, b, 0);
     glBegin(GL_POINTS);
     for (int i = n; i < N; i++) glVertex2fv(TriangleDots[i]);
     glEnd();
 }
+
 static void display(void) {
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
+
     // Repaint the background with the color
     // specified by glClearColor()
     glClear(GL_COLOR_BUFFER_BIT);
 
     LetsFractal(N);
     LetsDisplay(10.0f, 0, 3, 0, 1);
-    LetsDisplay(2.0f, 3, N+2, 1, 0);
+    LetsDisplay(2.0f, 3, N + 2, 1, 0);
 
     glutSwapBuffers();
 }
