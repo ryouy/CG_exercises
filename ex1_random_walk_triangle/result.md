@@ -43,33 +43,27 @@
 #include <math.h>
 #include <stdio.h>
 
-const int N = 100000;
-
-float SmallTriangles[N][2];
-
-float BigTriangles[3][2] = {
-    {0.0f, 0.0f},
-    {1.0f, 0.0f},
-    {0.5f, 1.0f}
-};
-
-/*  for better visualization
-float BigTriangles[3][2] = {
-    {0.05f, 0.05f},
-    {0.95f, 0.05f},
-    {0.5f, 0.95f}
-};
-*/
-
+const int N = 1000;
+float TriangleDots[N + 2][2];
 
 void LetsFractal(int N) {
-    SmallTriangles[0][0] = 0.0f;
-    SmallTriangles[0][1] = 0.0f;
-    for (int i = 1; i < N; i++) {
+    TriangleDots[0][0] = 0.0f; TriangleDots[0][1] = 0.0f;
+    TriangleDots[1][0] = 1.0f; TriangleDots[1][1] = 0.0f;
+    TriangleDots[2][0] = 0.5f; TriangleDots[2][1] = 1.0f;
+
+    for (int i = 3; i < N + 2; i++) {
         int random = rand() % 3;
-        SmallTriangles[i][0] = (SmallTriangles[i - 1][0] + BigTriangles[random][0]) / 2;
-        SmallTriangles[i][1] = (SmallTriangles[i - 1][1] + BigTriangles[random][1]) / 2;
+        for (int j = 0; j < 2; j++)
+            TriangleDots[i][j] = (TriangleDots[i - 1][j] + TriangleDots[random][j]) / 2;
     }
+}
+
+void LetsDisplay(float color, int n, int N, int a, int b) {
+    glPointSize(color);
+    glColor3f(a, b, 0);
+    glBegin(GL_POINTS);
+    for (int i = n; i < N; i++) glVertex2fv(TriangleDots[i]);
+    glEnd();
 }
 
 static void display(void) {
@@ -81,22 +75,8 @@ static void display(void) {
     glClear(GL_COLOR_BUFFER_BIT);
 
     LetsFractal(N);
-
-    glPointSize(10.0f);
-    glBegin(GL_POINTS);
-    for (int i = 0; i < 3; i++) {
-        glColor3f(0, 1, 0); // Set color to green
-        glVertex2fv(BigTriangles[i]);
-    }
-    glEnd();
-
-    glPointSize(2.0f);
-    glBegin(GL_POINTS);
-    for (int i = 0; i < N; i++) {
-        glColor3f(1, 0, 0); // Set color to red
-        glVertex2fv(SmallTriangles[i]);
-    }
-    glEnd();
+    LetsDisplay(10.0f, 0, 3, 0, 1);
+    LetsDisplay(2.0f, 3, N + 2, 1, 0);
 
     glutSwapBuffers();
 }
@@ -130,7 +110,6 @@ int main(int argc, char** argv) {
     glutMainLoop();
     return 0;
 }
-
 ```
 
 </details>
