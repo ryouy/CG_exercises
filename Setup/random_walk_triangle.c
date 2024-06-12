@@ -7,16 +7,8 @@
 #include <math.h>
 #include <stdio.h>
 
-const int N = 10000;
-
-float SmallTriangles[N][2];
-
-float BigTriangles[3][2] = {
-    {0.0f, 0.0f},
-    {1.0f, 0.0f},
-    {0.5f, 1.0f}
-};
-
+const int N = 100000;
+float TriangleDots[N+2][2];
 /*  for better visualization
 float BigTriangles[3][2] = {
     {0.05f, 0.05f},
@@ -25,14 +17,18 @@ float BigTriangles[3][2] = {
 };
 */
 
-
 void LetsFractal(int N) {
-    SmallTriangles[0][0] = 0.0f;
-    SmallTriangles[0][1] = 0.0f;
-    for (int i = 1; i < N; i++) {
+    TriangleDots[0][0] = 0.0f;
+    TriangleDots[0][1] = 0.0f;
+    TriangleDots[1][0] = 1.0f;
+    TriangleDots[1][1] = 0.0f;
+    TriangleDots[2][0] = 0.5f;
+    TriangleDots[2][1] = 1.0f;
+
+    for (int i = 3; i < N+2; i++) {
         int random = rand() % 3;
-        SmallTriangles[i][0] = (SmallTriangles[i - 1][0] + BigTriangles[random][0]) / 2;
-        SmallTriangles[i][1] = (SmallTriangles[i - 1][1] + BigTriangles[random][1]) / 2;
+        TriangleDots[i][0] = (TriangleDots[i - 1][0] + TriangleDots[random][0]) / 2;
+        TriangleDots[i][1] = (TriangleDots[i - 1][1] + TriangleDots[random][1]) / 2;
     }
 }
 
@@ -50,15 +46,15 @@ static void display(void) {
     glBegin(GL_POINTS);
     for (int i = 0; i < 3; i++) {
         glColor3f(0, 1, 0); // Set color to green
-        glVertex2fv(BigTriangles[i]);
+        glVertex2fv(TriangleDots[i]);
     }
     glEnd();
 
     glPointSize(2.0f);
     glBegin(GL_POINTS);
-    for (int i = 0; i < N; i++) {
+    for (int i = 3; i < N+2; i++) {
         glColor3f(1, 0, 0); // Set color to red
-        glVertex2fv(SmallTriangles[i]);
+        glVertex2fv(TriangleDots[i]);
     }
     glEnd();
 
