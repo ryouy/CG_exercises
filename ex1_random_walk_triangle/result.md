@@ -6,29 +6,8 @@
 
 ---
 
-### Result(N = 100)
 
-## ![](images/res100.png)
 
----
-
-### Result(N = 1000)
-
-## ![](images/res1000.png)
-
----
-
-### Result(N = 10000)
-
-## ![](images/res10000.png)
-
----
-
-### Result(N = 100000)
-
-## ![](images/res100000.png)
-
----
 
 <details>
   <summary>C code here</summary>
@@ -113,3 +92,29 @@ int main(int argc, char** argv) {
 ```
 
 </details>
+
+
+
+### Result(N = 100)
+
+## ![](images/res100.png)
+
+---
+
+### Result(N = 1000)
+
+## ![](images/res1000.png)
+
+---
+
+### Result(N = 10000)
+
+## ![](images/res10000.png)
+
+---
+
+### Result(N = 100000)
+
+## ![](images/res100000.png)
+
+---
