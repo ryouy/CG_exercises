@@ -97,24 +97,24 @@ int main(int argc, char** argv) {
 
 ### Result(N = 100)
 
-## ![](images/res100.png)
+## ![](images/100_2.png)
 
 ---
 
 ### Result(N = 1000)
 
-## ![](images/res1000.png)
+## ![](images/1000_2.png)
 
 ---
 
 ### Result(N = 10000)
 
-## ![](images/res10000.png)
+## ![](images/10000_2.png)
 
 ---
 
 ### Result(N = 100000)
 
-## ![](images/res100000.png)
+## ![](images/100000_2.png)
 
 ---
