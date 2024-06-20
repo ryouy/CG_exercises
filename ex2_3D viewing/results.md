@@ -11,7 +11,7 @@
 
 
 <details>
-  <summary>C code here</summary>
+  <summary>Full C code here</summary>
 
 ```
 
@@ -19,7 +19,28 @@
 
 </details>
 
+## Task1 Draw multiple icosahedrons
+<summary>C code here</summary>
 
+```
+
+static void drawRecursiveIcosahedron(int level) {
+    if (level == 0) return;
+    drawIcosahedron();
+
+    // Prepare for the next
+    for (int i = 0; i < 2; i++) {
+        float num = (i == 0) ? 1.0f : -1.0f;
+        glPushMatrix();
+        myTranslatef(num * 1.0f, -1.5f, 0.0f);
+        myScalef(SCALE_FACTOR, SCALE_FACTOR, SCALE_FACTOR);
+        drawRecursiveIcosahedron(level - 1);
+        glPopMatrix();
+    }
+}
+```
+
+</details>
 
 ### Result(N = 3)
 
@@ -31,10 +52,5 @@
 
 ## ![](images/5.png)
 
----
-
-### Result(N = 5 and so on)
-
-## ![](images/5_2.png)
 
 ---
