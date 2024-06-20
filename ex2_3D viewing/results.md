@@ -46,8 +46,7 @@ You can increase/decrease Icosahedrons by changing recursive level(keyboard inpu
 
 ## Task2 Implement the transformations
 
-Followings are code I implemented instead of relying on the functions provided by the fixed-function pipeling of OpenGL.
-
+The following are the codes I implemented instead of relying on the functions provided by the fixed-function pipeline of OpenGL.
 <br>
 
 You can easily switch between OpenGL implementation and mine(keyboard input u)
