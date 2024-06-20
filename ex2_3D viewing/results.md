@@ -42,16 +42,14 @@ static void drawRecursiveIcosahedron(int level) {
 ```
 
 </details>
+You can increase/decrease Icosahedrons by changing recursive level
 
 ### Result(N = 3)
 
 ## ![](images/3.png)
-
 ---
 
 ### Result(N = 5)
 
 ## ![](images/5.png)
-
-
 ---
