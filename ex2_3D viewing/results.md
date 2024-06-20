@@ -5,15 +5,6 @@
 
 ### s1300041 IT-SPR
 
-<details>
-  <summary>Full C code here</summary>
-
-```
-
-```
-
-</details>
-
 ---
 
 ## Task1 Draw multiple icosahedrons
