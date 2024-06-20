@@ -20,7 +20,8 @@
 </details>
 
 ## Task1 Draw multiple icosahedrons
-<summary>C code here</summary>
+<details>
+  <summary>C code(drawRecursiveIcosahedron) here</summary>
 
 ```
 
