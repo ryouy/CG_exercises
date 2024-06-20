@@ -45,11 +45,19 @@ You can increase/decrease Icosahedrons by changing recursive level.
 ---
 
 ## Task2 Implement the transformations
+
 Followings are code I implemented instead of relying on the functions provided by the fixed-function pipeling of OpenGL.
+
+<br>
+
+You can easily switch between OpenGL implementation and mine.
+
+<img src="images/trigger.png" height = "40px">
 
 ---
 
-- void myTranslatef(GLfloat x, GLfloat y, GLfloat z)
+## void myTranslatef(GLfloat x, GLfloat y, GLfloat z)
+  
 <details>
   <summary>code</summary>
  
@@ -72,7 +80,7 @@ Reference
 
 ---
 
-- void myRotatef(GLfloat theta, GLfloat kx, GLfloat ky, GLfloat kz)
+## void myRotatef(GLfloat theta, GLfloat kx, GLfloat ky, GLfloat kz)
   
 <details>
   <summary>code</summary>
@@ -106,7 +114,7 @@ Reference
 
 ---
 
-- void myScalef(GLfloat sx, GLfloat sy, GLfloat sz)
+## void myScalef(GLfloat sx, GLfloat sy, GLfloat sz)
 
 <details>
   <summary>code</summary>
@@ -129,7 +137,7 @@ Reference
 
 ---
 
-- void myOrtho(GLfloat left, GLfloat right, GLfloat bottom, GLfloat top, GLfloat near, GLfloat far)
+## void myOrtho(GLfloat left, GLfloat right, GLfloat bottom, GLfloat top, GLfloat near, GLfloat far)
 
 <details>
   <summary>code</summary>
@@ -150,7 +158,7 @@ Reference
 <img src="images/Orthographic projection.png" height = "200px">
 
 ---
-- void myPerspective(GLfloat fovy, GLfloat aspect, GLfloat near, GLfloat far);
+## void myPerspective(GLfloat fovy, GLfloat aspect, GLfloat near, GLfloat far)
 
 <details>
   <summary>code</summary>
@@ -174,8 +182,7 @@ Reference
 
 ---
 ## Task2 Implement lookAt
-- void myLookAt(float eyeX, float eyeY, float eyeZ,
-              float centerX,,,,)
+## void myLookAt(float eyeX, float eyeY, float eyeZ, float centerX,,,,)
 <details>
   <summary>code</summary>
  
