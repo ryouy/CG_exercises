@@ -42,14 +42,72 @@ static void drawRecursiveIcosahedron(int level) {
 ```
 
 </details>
-You can increase/decrease Icosahedrons by changing recursive level
+You can increase/decrease Icosahedrons by changing recursive level.
 
 ### Result(N = 3)
 
 ## ![](images/3.png)
+<img src="images/3.png" height = "400px">
 ---
 
 ### Result(N = 5)
 
-## ![](images/5.png)
+<img src="images/5.png" height = "400px">
+---
+## Task2 Implement the transformations
+Followings are code I implemented instead of relying on the functions provided by the fixed-function pipeling of OpenGL.
+
+- void myTranslatef(GLfloat x, GLfloat y, GLfloat z)
+---
+<details>
+  <summary>C code here</summary>
+```
+ggg
+```
+</details>
+
+<img src="images/translate.png" height = "400px">
+---
+
+- myRotatef(GLfloat theta, GLfloat kx, GLfloat ky, GLfloat kz)
+---
+<details>
+  <summary>C code here</summary>
+```
+gg
+```
+</details>
+<img src="images/rotate.png" height = "400px">
+---
+
+- void myScalef(GLfloat sx, GLfloat sy, GLfloat sz)
+---
+<details>
+  <summary>C code here</summary>
+```
+gg
+```
+</details>
+<img src="images/scale.png" height = "400px">
+---
+
+- void myOrtho(GLfloat left, GLfloat right, GLfloat bottom, GLfloat top, GLfloat near, GLfloat far)
+---
+<details>
+  <summary>C code here</summary>
+```
+gg
+```
+</details>
+<img src="images/3.png" height = "400px">
+---
+- void myScalef(GLfloat sx, GLfloat sy, GLfloat sz)
+---
+<details>
+  <summary>C code here</summary>
+```
+gg
+```
+</details>
+<img src="images/3.png" height = "400px">
 ---
