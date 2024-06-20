@@ -30,7 +30,7 @@ static void drawRecursiveIcosahedron(int level) {
 ```
 
 </details>
-You can increase/decrease Icosahedrons by changing recursive level.
+You can increase/decrease Icosahedrons by changing recursive level(keyboard input n/N).
 
 ### Result(N = 3)
 
@@ -50,7 +50,7 @@ Followings are code I implemented instead of relying on the functions provided b
 
 <br>
 
-You can easily switch between OpenGL implementation and mine.
+You can easily switch between OpenGL implementation and mine(keyboard input u)
 
 <img src="images/trigger.png" height = "40px">
 
