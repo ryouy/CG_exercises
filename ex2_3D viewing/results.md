@@ -181,6 +181,11 @@ Reference
 
 ---
 ## Task2 Implement lookAt
+You can easily switch between OpenGL implementation and mine(keyboard input l)
+
+<img src="images/triggerLookat.png" height = "40px">
+
+---
 ## void myLookAt(float eyeX, float eyeY, float eyeZ, float centerX,,,,)
 <details>
   <summary>code</summary>
@@ -217,7 +222,7 @@ void myLookAt(float eyeX, float eyeY, float eyeZ,
 You can change the initial eye, center and up by changing parameters bellow.
 
 ```
-myLookAt(0.0, 0.0, 10.0,  // eye
+myLookAt(0.0, 0.0, 5.0,  // eye
          0.0, 0.0, 0.0,   // center
          0.0, 1.0, 0.0);  // up
 ```
