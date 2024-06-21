@@ -15,6 +15,7 @@
 
 int recursive_level = 1;
 static int use_my_transforms = 1; // 0: Use OpenGL, 1: Use custom
+static int use_my_lookat = 1; // 0: Use OpenGL, 1: Use custom
 
 enum { TRANS, ROT, SCALE };
 static int g_op_mode = TRANS;
@@ -152,30 +153,36 @@ static void drawIcosahedron(void) {
     GLfloat b = 1.f / phi;
 
     GLfloat vertices[12][3] = { {0.f,b,-a}, {b,a,0.f}, {-b,a,0.f},
-                                {0.f,b,a}, {0.f,-b,a}, {-a,0.f,b},
-                                {0.f,-b,-a}, {a,0.f,-b}, {a,0.f,b},
-                                {-a,0.f,-b},{b,-a,0.f},{-b,-a,0.f} };
+    {0.f,b,a}, {0.f,-b,a}, {-a,0.f,b},
+    {0.f,-b,-a}, {a,0.f,-b}, {a,0.f,b},
+    {-a,0.f,-b},{b,-a,0.f},{-b,-a,0.f}
+    };
 
     GLfloat color[20][3] = { {0.0f,0.0f,0.6f}, {0.0f,0.0f,0.8f}, {0.0f,0.0f,1.0f},
-                             {0.f, 0.2f, 1.f}, {0.f,0.4f,1.f}, {0.f,0.6f,1.f}, {0.f,0.8f,1.f}, {0.f,1.f,1.f},
-                             {0.2f,1.f,0.8f}, {0.4f,1.f,0.6f}, {0.6f,1.f,0.4f}, {0.8f,1.f,0.2f},
-                             {1.f,1.f,0.f}, {1.f,0.8f,0.f}, {1.f,0.6f,0.f}, {1.f,0.4f,0.f}, {1.f,0.2f,0.f},
-                             {1.f,0.f,0.f}, {0.8f,0.f,0.f}, {0.6f,0.f,0.f} };
+    {0.f, 0.2f, 1.f}, {0.f,0.4f,1.f}, {0.f,0.6f,1.f}, {0.f,0.8f,1.f}, {0.f,1.f,1.f},
+    {0.2f,1.f,0.8f}, {0.4f,1.f,0.6f}, {0.6f,1.f,0.4f}, {0.8f,1.f,0.2f},
+    {1.f,1.f,0.f}, {1.f,0.8f,0.f}, {1.f,0.6f,0.f}, {1.f,0.4f,0.f}, {1.f,0.2f,0.f},
+    {1.f,0.f,0.f}, {0.8f,0.f,0.f}, {0.6f,0.f,0.f}
+    };
 
     int faces[20][3] = { {2,1,0}, {1,2,3}, {5,4,3}, {4,8,3},
-                         {7,6,0}, {6,9,0}, {11,10,4}, {10,11,6},
-                         {9,5,2}, {5,9,11}, {8,7,1}, {7,8,10},
-                         {2,5,3}, {8,1,3}, {9,2,0}, {1,7,0},
-                         {11,9,6}, {7,10,6}, {5,11,4}, {10,8,4} };
+    {7,6,0}, {6,9,0}, {11,10,4}, {10,11,6},
+    {9,5,2}, {5,9,11}, {8,7,1}, {7,8,10},
+    {2,5,3}, {8,1,3}, {9,2,0}, {1,7,0},
+    {11,9,6}, {7,10,6}, {5,11,4}, {10,8,4}
+    };
 
-    for (int i = 0; i < 20; ++i) {
+    int i;
+
+    for (i = 0; i < 20; ++i) {
         GLfloat* c = color[i];
         int* f = faces[i];
+        int v0 = f[0], v1 = f[1], v2 = f[2];
         glColor3f(c[0], c[1], c[2]);
         glBegin(GL_TRIANGLES);
-        glVertex3f(vertices[f[0]][0], vertices[f[0]][1], vertices[f[0]][2]);
-        glVertex3f(vertices[f[1]][0], vertices[f[1]][1], vertices[f[1]][2]);
-        glVertex3f(vertices[f[2]][0], vertices[f[2]][1], vertices[f[2]][2]);
+        glVertex3f(vertices[v0][0], vertices[v0][1], vertices[v0][2]);
+        glVertex3f(vertices[v1][0], vertices[v1][1], vertices[v1][2]);
+        glVertex3f(vertices[v2][0], vertices[v2][1], vertices[v2][2]);
         glEnd();
     }
 }
@@ -221,10 +228,19 @@ static void display(void) {
 
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
-    myLookAt(0.0, 0.0, 10.0,
+
+
+
+
+    if (use_my_lookat) {
+            myLookAt(0.0, 0.0, 5.0,
              0.0, 0.0, 0.0,
              0.0, 1.0, 0.0);
-
+        } else {
+            gluLookAt(0.0, 0.0, 5.0,
+              0.0, 0.0, 0.0,
+              0.0, 1.0, 0.0);
+        }
     glPushMatrix();
 
     if (use_my_transforms) {
@@ -278,6 +294,11 @@ static void keyboard(unsigned char k, int x, int y) {
         // Allow to switch between OpenGL transformations and your implementations
         case 'u':
             use_my_transforms = !use_my_transforms;
+            break;
+
+        // Allow to switch between OpenGL lookat and your implementations
+        case 'l':
+            use_my_lookat = !use_my_lookat;
             break;
 
         case 'p':
