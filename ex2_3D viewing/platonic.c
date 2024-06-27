@@ -8,7 +8,6 @@
 #include <stdlib.h>
 #include <math.h>
 
-
 #define _PI 3.14159f
 #define SCALE_FACTOR 0.5f
 #define TRANSLATE_FACTOR 1.5f
@@ -78,10 +77,19 @@ void myLookAt(float eyeX, float eyeY, float eyeZ,
     m[3] = 0.0;     m[7] = 0.0;     m[11] = 0.0;    m[15] = 1.0;
 
     glMultMatrixf(m);
+
     if (use_my_transforms) {
-        myTranslatef(-eyeX, -eyeY, -eyeZ);
+        if (g_proj_mode == ORTHO) {
+            myTranslatef(-eyeX, -eyeY - 1.5f, -eyeZ);
+        } else {
+            myTranslatef(-eyeX, -eyeY, -eyeZ);
+        }
     } else {
-        glTranslatef(-eyeX, -eyeY, -eyeZ);
+        if (g_proj_mode == ORTHO) {
+            glTranslatef(-eyeX, -eyeY - 1.5f, -eyeZ);
+        } else {
+            glTranslatef(-eyeX, -eyeY, -eyeZ);
+        }
     }
 }
 
@@ -229,19 +237,26 @@ static void display(void) {
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 
-
-
-
     if (use_my_lookat) {
-            myLookAt(0.0, 0.0, 5.0,
+        myLookAt(0.0, 0.0, 5.0,
              0.0, 0.0, 0.0,
              0.0, 1.0, 0.0);
-        } else {
-            gluLookAt(0.0, 0.0, 5.0,
+    } else {
+        gluLookAt(0.0, 0.0, 5.0,
               0.0, 0.0, 0.0,
               0.0, 1.0, 0.0);
-        }
+    }
+
     glPushMatrix();
+
+    
+    if (g_proj_mode == ORTHO) {
+        if (use_my_transforms) {
+            myTranslatef(0.0f, -1.5f, 0.0f);
+        } else {
+            glTranslatef(0.0f, -1.5f, 0.0f);
+        }
+    }
 
     if (use_my_transforms) {
         myTranslatef(g_trans[0], g_trans[1], g_trans[2]);
